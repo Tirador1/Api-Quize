@@ -9,7 +9,7 @@ A fast, conversion-focused landing page to sell the premium domain: `ApiQuiz.com
 ## Files
 
 - `index.html` — Single file with inline CSS/JS, SEO meta, Open Graph, Product JSON-LD, micro-interactions, and analytics hooks.
-- `assets/apiquiz-banner.svg` — 1200x630 OG-friendly banner with gradient + wordmark used in hero and metadata.
+- `download.png` — 1200x630 OG-friendly banner with gradient + wordmark used in hero and metadata.
 
 ## Features
 
