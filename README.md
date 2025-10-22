@@ -15,6 +15,12 @@ A fast, conversion-focused landing page to sell the premium domain: `ApiQuiz.com
 
 - Clear, persuasive copy tailored to tech + edtech buyers
 - Above-the-fold dual CTAs (Buy Now + Email Seller)
+- **Interactive API Playground**: 5 realistic API endpoints with simulated requests/responses
+  - Get Quiz, Create Quiz, Submit Answer, Get Leaderboard, Validate API Key
+  - Tab navigation between endpoints
+  - Send button with loading animation (500ms delay)
+  - Copy buttons for cURL commands and JSON responses
+  - Realistic request/response panels with syntax highlighting
 - Value props, use cases, market context, features, social proof, FAQ
 - Sticky CTA bar appears on scroll
 - Subtle fade-in on scroll and crisp hover states

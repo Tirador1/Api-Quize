@@ -528,6 +528,358 @@
         font-size: 14px;
       }
 
+      /* API Playground Section */
+      .api-playground-section {
+        background: linear-gradient(
+          180deg,
+          rgba(26, 34, 78, 0.22),
+          rgba(6, 10, 24, 0.2)
+        );
+        border-top: 1px solid rgba(90, 120, 220, 0.18);
+        border-bottom: 1px solid rgba(90, 120, 220, 0.14);
+      }
+      .playground-container {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        margin-top: 20px;
+      }
+
+      /* Tabs */
+      .tab-nav {
+        display: flex;
+        gap: 4px;
+        background: rgba(8, 12, 28, 0.6);
+        padding: 6px;
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+      }
+      .tab-btn {
+        background: transparent;
+        border: none;
+        color: var(--muted);
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      .tab-btn:hover {
+        background: rgba(142, 170, 255, 0.08);
+        color: var(--ink);
+      }
+      .tab-btn.active {
+        background: var(--primary-1);
+        color: #fff;
+      }
+      .tab-btn:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      /* Tab Panels */
+      .tab-panels {
+        position: relative;
+      }
+      .tab-panel {
+        display: none;
+        padding: 20px;
+      }
+      .tab-panel.active {
+        display: block;
+      }
+
+      /* Playground Grid */
+      .playground-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      /* Request/Response Panels */
+      .request-panel,
+      .response-panel {
+        background: rgba(8, 12, 28, 0.7);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 500px;
+        max-height: 500px;
+      }
+      .request-details,
+      .response-placeholder,
+      .response-content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border) transparent;
+      }
+      .request-details::-webkit-scrollbar,
+      .response-content::-webkit-scrollbar {
+        width: 6px;
+      }
+      .request-details::-webkit-scrollbar-track,
+      .response-content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .request-details::-webkit-scrollbar-thumb,
+      .response-content::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 3px;
+      }
+      .request-details::-webkit-scrollbar-thumb:hover,
+      .response-content::-webkit-scrollbar-thumb:hover {
+        background: #355199;
+      }
+      .panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+      }
+      .panel-header h3 {
+        margin: 0;
+        font-size: 16px;
+        color: var(--ink);
+      }
+      .copy-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 6px 10px;
+        color: var(--muted);
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .copy-btn svg {
+        width: 14px;
+        height: 14px;
+      }
+      .copy-btn:hover:not(:disabled) {
+        background: rgba(142, 170, 255, 0.08);
+        border-color: #355199;
+        color: var(--ink);
+      }
+      .copy-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .copy-btn.copied {
+        background: rgba(61, 220, 132, 0.15);
+        border-color: var(--success);
+        color: var(--success);
+      }
+
+      /* Request Details */
+      .request-details {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .method-line {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(90, 120, 220, 0.15);
+        border-radius: 8px;
+      }
+      .method {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        flex-shrink: 0;
+      }
+      .method.get {
+        background: rgba(61, 220, 132, 0.15);
+        color: var(--success);
+        border: 1px solid rgba(61, 220, 132, 0.3);
+      }
+      .method.post {
+        background: rgba(46, 208, 255, 0.15);
+        color: var(--primary-2);
+        border: 1px solid rgba(46, 208, 255, 0.3);
+      }
+      .endpoint {
+        color: var(--ink);
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        font-weight: 600;
+        flex: 1;
+        word-break: break-all;
+      }
+      .headers,
+      .body {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .label {
+        color: var(--primary-2);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 2px;
+      }
+      .request-details code {
+        display: block;
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(90, 120, 220, 0.2);
+        border-radius: 8px;
+        padding: 12px;
+        color: #c9d9f5;
+        font-size: 13px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow-x: auto;
+        font-family: 'Courier New', Consolas, monospace;
+      }
+
+      /* Send Button */
+      .send-btn {
+        background: linear-gradient(135deg, var(--primary-2), var(--primary-1));
+        border: 1px solid #2b2257;
+        color: #03131a;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+        min-height: 44px;
+        width: 100%;
+      }
+      .send-btn .btn-text,
+      .send-btn .btn-loader {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .send-btn:hover:not(:disabled) {
+        filter: brightness(1.07);
+        box-shadow: 0 6px 18px rgba(46, 208, 255, 0.18);
+        transform: translateY(-1px);
+      }
+      .send-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+      .send-btn:focus-visible {
+        box-shadow: 0 0 0 3px rgba(51, 225, 255, 0.35);
+      }
+
+      /* Spinner */
+      .spinner {
+        width: 18px;
+        height: 18px;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Response */
+      .response-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 40px 20px;
+        color: var(--muted);
+        text-align: center;
+        min-height: 100%;
+      }
+      .response-placeholder svg {
+        width: 40px;
+        height: 40px;
+        opacity: 0.4;
+      }
+      .response-placeholder p {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .response-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .status-line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(90, 120, 220, 0.2);
+        border-radius: 8px;
+      }
+      .status {
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .status.success {
+        color: var(--success);
+      }
+      .timing {
+        color: var(--muted);
+        font-size: 12px;
+        font-family: 'Courier New', monospace;
+      }
+
+      .response-body {
+        margin: 0;
+      }
+      .response-body code {
+        display: block;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(90, 120, 220, 0.2);
+        border-radius: 8px;
+        padding: 12px;
+        color: #a9d5ff;
+        font-size: 13px;
+        line-height: 1.6;
+        white-space: pre;
+        overflow-x: auto;
+        font-family: 'Courier New', monospace;
+      }
+
       /* Responsive */
       @media (max-width: 960px) {
         .hero-grid {
@@ -538,6 +890,12 @@
         }
         .stat-row {
           grid-template-columns: 1fr;
+        }
+        .playground-grid {
+          grid-template-columns: 1fr;
+        }
+        .tab-nav {
+          overflow-x: auto;
         }
       }
       @media (max-width: 560px) {
@@ -670,6 +1028,694 @@
           </div>
           <div class="hero-art" aria-hidden="true">
             <img src="download.png" alt="" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- API PLAYGROUND SECTION -->
+      <section class="api-playground-section">
+        <div class="container">
+          <h2 class="reveal-on-scroll">
+            See It in Action — Interactive API Demo
+          </h2>
+          <p class="lead reveal-on-scroll">
+            Experience how your API-powered quiz platform could work. Select an
+            endpoint, send a request, and see the response—all simulated in
+            real-time.
+          </p>
+
+          <div class="playground-container reveal-on-scroll">
+            <!-- Tab Navigation -->
+            <div class="tab-nav" role="tablist" aria-label="API endpoints">
+              <button
+                class="tab-btn active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="tab-get-quiz"
+                data-tab="get-quiz"
+              >
+                Get Quiz
+              </button>
+              <button
+                class="tab-btn"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-create-quiz"
+                data-tab="create-quiz"
+              >
+                Create Quiz
+              </button>
+              <button
+                class="tab-btn"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-submit-answer"
+                data-tab="submit-answer"
+              >
+                Submit Answer
+              </button>
+              <button
+                class="tab-btn"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-leaderboard"
+                data-tab="leaderboard"
+              >
+                Get Leaderboard
+              </button>
+              <button
+                class="tab-btn"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-validate"
+                data-tab="validate"
+              >
+                Validate API Key
+              </button>
+            </div>
+
+            <!-- Tab Panels -->
+            <div class="tab-panels">
+              <!-- Get Quiz -->
+              <div
+                class="tab-panel active"
+                id="tab-get-quiz"
+                role="tabpanel"
+                data-endpoint="get-quiz"
+              >
+                <div class="playground-grid">
+                  <div class="request-panel">
+                    <div class="panel-header">
+                      <h3>Request</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="curl"
+                        aria-label="Copy as cURL"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy cURL
+                      </button>
+                    </div>
+                    <div class="request-details">
+                      <div class="method-line">
+                        <span class="method get">GET</span>
+                        <span class="endpoint">/api/v1/quiz/123</span>
+                      </div>
+                      <div class="headers">
+                        <div class="label">Headers:</div>
+                        <code
+                          >Authorization: Bearer YOUR_API_KEY Content-Type:
+                          application/json</code
+                        >
+                      </div>
+                    </div>
+                    <button class="send-btn" data-endpoint="get-quiz">
+                      <span class="btn-text">Send Request</span>
+                      <span class="btn-loader" style="display: none">
+                        <svg class="spinner" viewBox="0 0 24 24">
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            fill="none"
+                            stroke-dasharray="31.4 31.4"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="response-panel">
+                    <div class="panel-header">
+                      <h3>Response</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="response"
+                        aria-label="Copy response"
+                        disabled
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy
+                      </button>
+                    </div>
+                    <div class="response-placeholder">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                      </svg>
+                      <p>Click "Send Request" to see the response</p>
+                    </div>
+                    <div class="response-content" style="display: none">
+                      <div class="status-line">
+                        <span class="status success">200 OK</span>
+                        <span class="timing">~142ms</span>
+                      </div>
+                      <pre class="response-body"><code>{
+  "id": 123,
+  "title": "JavaScript Fundamentals",
+  "description": "Test your JS knowledge",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "id": 1,
+      "text": "What is a closure?",
+      "type": "multiple_choice",
+      "options": ["A", "B", "C", "D"]
+    }
+  ],
+  "totalQuestions": 10,
+  "timeLimit": 1800
+}</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Create Quiz -->
+              <div
+                class="tab-panel"
+                id="tab-create-quiz"
+                role="tabpanel"
+                data-endpoint="create-quiz"
+              >
+                <div class="playground-grid">
+                  <div class="request-panel">
+                    <div class="panel-header">
+                      <h3>Request</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="curl"
+                        aria-label="Copy as cURL"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy cURL
+                      </button>
+                    </div>
+                    <div class="request-details">
+                      <div class="method-line">
+                        <span class="method post">POST</span>
+                        <span class="endpoint">/api/v1/quiz</span>
+                      </div>
+                      <div class="headers">
+                        <div class="label">Headers:</div>
+                        <code
+                          >Authorization: Bearer YOUR_API_KEY Content-Type:
+                          application/json</code
+                        >
+                      </div>
+                      <div class="body">
+                        <div class="label">Body:</div>
+                        <code
+                          >{ "title": "React Hooks Quiz", "difficulty":
+                          "advanced", "questions": [...] }</code
+                        >
+                      </div>
+                    </div>
+                    <button class="send-btn" data-endpoint="create-quiz">
+                      <span class="btn-text">Send Request</span>
+                      <span class="btn-loader" style="display: none">
+                        <svg class="spinner" viewBox="0 0 24 24">
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            fill="none"
+                            stroke-dasharray="31.4 31.4"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="response-panel">
+                    <div class="panel-header">
+                      <h3>Response</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="response"
+                        aria-label="Copy response"
+                        disabled
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy
+                      </button>
+                    </div>
+                    <div class="response-placeholder">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                      </svg>
+                      <p>Click "Send Request" to see the response</p>
+                    </div>
+                    <div class="response-content" style="display: none">
+                      <div class="status-line">
+                        <span class="status success">201 Created</span>
+                        <span class="timing">~218ms</span>
+                      </div>
+                      <pre class="response-body"><code>{
+  "id": 456,
+  "title": "React Hooks Quiz",
+  "difficulty": "advanced",
+  "status": "draft",
+  "createdAt": "2025-10-22T14:30:00Z",
+  "createdBy": "user_789",
+  "editUrl": "/quiz/456/edit",
+  "publishUrl": "/quiz/456/publish"
+}</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Answer -->
+              <div
+                class="tab-panel"
+                id="tab-submit-answer"
+                role="tabpanel"
+                data-endpoint="submit-answer"
+              >
+                <div class="playground-grid">
+                  <div class="request-panel">
+                    <div class="panel-header">
+                      <h3>Request</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="curl"
+                        aria-label="Copy as cURL"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy cURL
+                      </button>
+                    </div>
+                    <div class="request-details">
+                      <div class="method-line">
+                        <span class="method post">POST</span>
+                        <span class="endpoint">/api/v1/quiz/123/submit</span>
+                      </div>
+                      <div class="headers">
+                        <div class="label">Headers:</div>
+                        <code
+                          >Authorization: Bearer YOUR_API_KEY Content-Type:
+                          application/json</code
+                        >
+                      </div>
+                      <div class="body">
+                        <div class="label">Body:</div>
+                        <code
+                          >{ "questionId": 1, "answer": "A", "timeSpent": 45
+                          }</code
+                        >
+                      </div>
+                    </div>
+                    <button class="send-btn" data-endpoint="submit-answer">
+                      <span class="btn-text">Send Request</span>
+                      <span class="btn-loader" style="display: none">
+                        <svg class="spinner" viewBox="0 0 24 24">
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            fill="none"
+                            stroke-dasharray="31.4 31.4"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="response-panel">
+                    <div class="panel-header">
+                      <h3>Response</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="response"
+                        aria-label="Copy response"
+                        disabled
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy
+                      </button>
+                    </div>
+                    <div class="response-placeholder">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                      </svg>
+                      <p>Click "Send Request" to see the response</p>
+                    </div>
+                    <div class="response-content" style="display: none">
+                      <div class="status-line">
+                        <span class="status success">200 OK</span>
+                        <span class="timing">~95ms</span>
+                      </div>
+                      <pre class="response-body"><code>{
+  "correct": true,
+  "points": 10,
+  "explanation": "Correct! A closure is...",
+  "nextQuestion": {
+    "id": 2,
+    "text": "What is hoisting?"
+  },
+  "progress": {
+    "completed": 1,
+    "total": 10,
+    "score": 10
+  }
+}</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Get Leaderboard -->
+              <div
+                class="tab-panel"
+                id="tab-leaderboard"
+                role="tabpanel"
+                data-endpoint="leaderboard"
+              >
+                <div class="playground-grid">
+                  <div class="request-panel">
+                    <div class="panel-header">
+                      <h3>Request</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="curl"
+                        aria-label="Copy as cURL"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy cURL
+                      </button>
+                    </div>
+                    <div class="request-details">
+                      <div class="method-line">
+                        <span class="method get">GET</span>
+                        <span class="endpoint"
+                          >/api/v1/leaderboard?limit=5</span
+                        >
+                      </div>
+                      <div class="headers">
+                        <div class="label">Headers:</div>
+                        <code
+                          >Authorization: Bearer YOUR_API_KEY Content-Type:
+                          application/json</code
+                        >
+                      </div>
+                    </div>
+                    <button class="send-btn" data-endpoint="leaderboard">
+                      <span class="btn-text">Send Request</span>
+                      <span class="btn-loader" style="display: none">
+                        <svg class="spinner" viewBox="0 0 24 24">
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            fill="none"
+                            stroke-dasharray="31.4 31.4"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="response-panel">
+                    <div class="panel-header">
+                      <h3>Response</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="response"
+                        aria-label="Copy response"
+                        disabled
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy
+                      </button>
+                    </div>
+                    <div class="response-placeholder">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                      </svg>
+                      <p>Click "Send Request" to see the response</p>
+                    </div>
+                    <div class="response-content" style="display: none">
+                      <div class="status-line">
+                        <span class="status success">200 OK</span>
+                        <span class="timing">~167ms</span>
+                      </div>
+                      <pre class="response-body"><code>{
+  "leaderboard": [
+    {
+      "rank": 1,
+      "username": "dev_ninja",
+      "score": 950,
+      "quizzesCompleted": 12
+    },
+    {
+      "rank": 2,
+      "username": "code_master",
+      "score": 920,
+      "quizzesCompleted": 10
+    },
+    {
+      "rank": 3,
+      "username": "api_wizard",
+      "score": 880,
+      "quizzesCompleted": 11
+    }
+  ],
+  "totalPlayers": 1247,
+  "updatedAt": "2025-10-22T14:30:00Z"
+}</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Validate API Key -->
+              <div
+                class="tab-panel"
+                id="tab-validate"
+                role="tabpanel"
+                data-endpoint="validate"
+              >
+                <div class="playground-grid">
+                  <div class="request-panel">
+                    <div class="panel-header">
+                      <h3>Request</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="curl"
+                        aria-label="Copy as cURL"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy cURL
+                      </button>
+                    </div>
+                    <div class="request-details">
+                      <div class="method-line">
+                        <span class="method get">GET</span>
+                        <span class="endpoint">/api/v1/auth/validate</span>
+                      </div>
+                      <div class="headers">
+                        <div class="label">Headers:</div>
+                        <code
+                          >Authorization: Bearer YOUR_API_KEY Content-Type:
+                          application/json</code
+                        >
+                      </div>
+                    </div>
+                    <button class="send-btn" data-endpoint="validate">
+                      <span class="btn-text">Send Request</span>
+                      <span class="btn-loader" style="display: none">
+                        <svg class="spinner" viewBox="0 0 24 24">
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            fill="none"
+                            stroke-dasharray="31.4 31.4"
+                            stroke-linecap="round"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="response-panel">
+                    <div class="panel-header">
+                      <h3>Response</h3>
+                      <button
+                        class="copy-btn"
+                        data-copy="response"
+                        aria-label="Copy response"
+                        disabled
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <rect x="9" y="9" width="13" height="13" rx="2" />
+                          <path
+                            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                          />
+                        </svg>
+                        Copy
+                      </button>
+                    </div>
+                    <div class="response-placeholder">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                      </svg>
+                      <p>Click "Send Request" to see the response</p>
+                    </div>
+                    <div class="response-content" style="display: none">
+                      <div class="status-line">
+                        <span class="status success">200 OK</span>
+                        <span class="timing">~78ms</span>
+                      </div>
+                      <pre class="response-body"><code>{
+  "valid": true,
+  "apiKey": "ak_live_abc123...",
+  "plan": "professional",
+  "rateLimit": {
+    "limit": 1000,
+    "remaining": 847,
+    "reset": 1729612800
+  },
+  "permissions": [
+    "quiz:read",
+    "quiz:write",
+    "leaderboard:read"
+  ]
+}</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1140,6 +2186,165 @@
 
       // Year
       document.getElementById('year').textContent = new Date().getFullYear()
+
+      // ============ API PLAYGROUND LOGIC ============
+
+      // Tab switching
+      const tabButtons = document.querySelectorAll('.tab-btn')
+      const tabPanels = document.querySelectorAll('.tab-panel')
+
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetTab = btn.dataset.tab
+
+          // Update buttons
+          tabButtons.forEach((b) => {
+            b.classList.remove('active')
+            b.setAttribute('aria-selected', 'false')
+          })
+          btn.classList.add('active')
+          btn.setAttribute('aria-selected', 'true')
+
+          // Update panels
+          tabPanels.forEach((panel) => {
+            panel.classList.remove('active')
+          })
+          const targetPanel = document.getElementById(`tab-${targetTab}`)
+          if (targetPanel) targetPanel.classList.add('active')
+        })
+      })
+
+      // Send Request simulation
+      const sendButtons = document.querySelectorAll('.send-btn')
+
+      sendButtons.forEach((btn) => {
+        btn.addEventListener('click', function () {
+          const panel = this.closest('.tab-panel')
+          if (!panel) return
+
+          const responsePanel = panel.querySelector('.response-panel')
+          const placeholder = responsePanel.querySelector(
+            '.response-placeholder'
+          )
+          const content = responsePanel.querySelector('.response-content')
+          const copyBtn = responsePanel.querySelector(
+            '.copy-btn[data-copy="response"]'
+          )
+          const btnText = this.querySelector('.btn-text')
+          const btnLoader = this.querySelector('.btn-loader')
+
+          // Show loading
+          this.disabled = true
+          btnText.style.display = 'none'
+          btnLoader.style.display = 'inline-flex'
+
+          // Hide previous response
+          if (content) content.style.display = 'none'
+          if (placeholder) placeholder.style.display = 'flex'
+
+          // Simulate API call (500ms delay)
+          setTimeout(() => {
+            // Show response
+            if (placeholder) placeholder.style.display = 'none'
+            if (content) content.style.display = 'grid'
+            if (copyBtn) copyBtn.disabled = false
+
+            // Reset button
+            this.disabled = false
+            btnText.style.display = 'inline'
+            btnLoader.style.display = 'none'
+
+            // Track event
+            trackClick('api_demo_send', panel.dataset.endpoint)
+          }, 500)
+        })
+      })
+
+      // Copy functionality
+      const copyButtons = document.querySelectorAll('.copy-btn')
+
+      console.log('Found copy buttons:', copyButtons.length)
+
+      copyButtons.forEach((btn) => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault()
+          console.log('Copy button clicked, type:', this.dataset.copy)
+
+          if (this.disabled) {
+            console.log('Button is disabled')
+            return
+          }
+
+          const copyType = this.dataset.copy
+          const panel = this.closest('.tab-panel')
+
+          console.log('Panel found:', panel ? 'yes' : 'no')
+          if (!panel) return
+
+          let textToCopy = ''
+
+          if (copyType === 'curl') {
+            // Generate cURL command
+            const methodEl = panel.querySelector('.method')
+            const endpointEl = panel.querySelector('.endpoint')
+            const method = methodEl ? methodEl.textContent.trim() : 'GET'
+            const endpoint = endpointEl ? endpointEl.textContent.trim() : ''
+            const bodyEl = panel.querySelector('.body code')
+
+            textToCopy = `curl -X ${method} "https://api.apiquiz.com${endpoint}" \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json"`
+
+            if (bodyEl) {
+              const body = bodyEl.textContent.trim()
+              textToCopy += ` \\
+  -d '${body}'`
+            }
+
+            console.log('Generated cURL:', textToCopy.substring(0, 50) + '...')
+          } else if (copyType === 'response') {
+            // Copy response body
+            const responseCode = panel.querySelector('.response-body code')
+            console.log('Response code found:', responseCode ? 'yes' : 'no')
+            if (responseCode) {
+              textToCopy = responseCode.textContent.trim()
+              console.log('Response text length:', textToCopy.length)
+            }
+          }
+
+          // Copy to clipboard
+          if (textToCopy) {
+            console.log('Attempting to copy to clipboard...')
+            navigator.clipboard
+              .writeText(textToCopy)
+              .then(() => {
+                console.log('Copy successful!')
+                // Show feedback
+                const originalText = this.innerHTML
+                this.classList.add('copied')
+                this.innerHTML =
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Copied!'
+
+                setTimeout(() => {
+                  this.classList.remove('copied')
+                  this.innerHTML = originalText
+                }, 2000)
+
+                // Track event
+                trackClick(
+                  'api_demo_copy',
+                  `${copyType}_${panel.dataset.endpoint}`
+                )
+              })
+              .catch((err) => {
+                console.error('Copy failed:', err)
+                alert('Failed to copy. Please try again or copy manually.')
+              })
+          } else {
+            console.log('No text to copy')
+          }
+        })
+      })
     </script>
   </body>
 </html>
